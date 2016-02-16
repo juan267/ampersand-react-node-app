@@ -32,6 +32,7 @@ GitHub auth
 
 ```
 http://labelr-dev.herokuapp.com/authenticate/CODE'
+
 ```
 
 Login page:

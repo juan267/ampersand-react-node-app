@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 export default React.createClass({
   render(){
     return (
@@ -12,7 +10,7 @@ export default React.createClass({
           <ul className='list-unstyled list-inline cf'>
             <li>Labelr</li>
             <li><a href='/repos'>Repos</a></li>
-            <li className='pull-right'><a href='/'>Logout</a></li>
+            <li className='pull-right'><a href='/logout'>Logout</a></li>
           </ul>
         </nav>
         <div className='container'>

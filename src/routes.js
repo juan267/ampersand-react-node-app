@@ -2,6 +2,7 @@ import Router from 'ampersand-router'
 import app from 'ampersand-app'
 import React from 'react'
 import qs from 'qs'
+import xhr from 'xhr'
 import LocalLinks from './localLinks.js'
 import Layout from './layout.js'
 import PublicPage from './pages/public.js'
@@ -12,7 +13,8 @@ export default Router.extend({
     "": "public",
     "repos": "repos",
     'login': 'login',
-    'auth/callback?:query': 'authCallback'
+    'auth/callback?:query': 'authCallback',
+    'logout': 'logout'
   },
   renderPage(page, opts={layout: true}){
     if (opts.layout) {
@@ -46,6 +48,18 @@ export default Router.extend({
   authCallback(query){
     const response = qs.parse(query)
     console.log(response)
+    xhr({
+      url: `http://gatekeeper.herokuapp.com/authenticate/${response.code}`,
+      json: true
+    },(err, req, body) =>{
+      console.log(body)
+      app.me.token = body.token
+      this.redirectTo('/repos')
+    })
+  },
+  logout(){
+    window.localStorage.clear()
+    window.location = '/'
   }
 })
 
