@@ -1,14 +1,15 @@
+import app from 'ampersand-app'
 import React from 'react'
 import Router from './routes'
 require('./styles/main.styl')
 
 
-window.app = {
+app.extend({
   init(){
     this.router = new Router()
     this.router.history.start()
   }
-}
+})
 
 app.init()
 
