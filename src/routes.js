@@ -7,6 +7,7 @@ import LocalLinks from './localLinks.js'
 import Layout from './layout.js'
 import PublicPage from './pages/public.js'
 import ReposPage from './pages/repos.js'
+import RepoDetail from './pages/repo-detail.js'
 
 export default Router.extend({
   routes: {
@@ -14,7 +15,9 @@ export default Router.extend({
     "repos": "repos",
     'login': 'login',
     'auth/callback?:query': 'authCallback',
-    'logout': 'logout'
+    'logout': 'logout',
+    'repos/:owner/:name': 'repoDetail',
+    'repos/:owner/:name/labels': 'repoLabels'
   },
   renderPage(page, opts={layout: true}){
     if (opts.layout) {
@@ -37,6 +40,13 @@ export default Router.extend({
 
   repos(){
     this.renderPage(<ReposPage repos={app.me.repos}/>)
+  },
+  repoDetail(owner, name){
+    const model = app.me.repos.getByFullName(`${owner}/${name}`)
+    this.renderPage(<RepoDetail repo={model} labels={model.labels}/>)
+  },
+  repoLabels(owner, name){
+    this.renderPage(<LabelsPage labels={app.me.repos.getByFullName(`${owner}/${name}`).labels}/>)
   },
   login(){
     window.location = "https://github.com/login/oauth/authorize?" + qs.stringify({

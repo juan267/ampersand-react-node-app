@@ -26,7 +26,6 @@ export default Model.extend(githubMixin,{
   },
   fetchInitialData(){
     if (this.token) {
-      console.log(this)
       this.fetch()
       this.repos.fetch()
     }

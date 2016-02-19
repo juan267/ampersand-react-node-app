@@ -2,6 +2,8 @@ import app from 'ampersand-app'
 import Me from './models/me.js'
 import React from 'react'
 import Router from './routes'
+import icons from 'octicons/octicons/octicons.css'
+
 require('./styles/main.styl')
 
 
