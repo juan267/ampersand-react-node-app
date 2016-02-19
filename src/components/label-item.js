@@ -12,13 +12,26 @@ export default React.createClass({
   destroyLabel(){
     this.props.label.destroy()
   },
+  onEditChange(event){
+    event.preventDefault()
+    this.setState({
+      name: event.target.value
+    })
+  },
+  getInitialState(){
+    const {name, color} = this.props.label
+    return {
+      name,
+      color
+    }
+  },
   render() {
     const {label} = this.props
     let content
     if(label.isEditing){
       content = (<form className='label'>
                   <span className='label-color avatar avatar-small avatar-rounded'>&nbsp;</span>
-                  <input name='name'/>
+                  <input name='name' value={this.state.name} onChange={this.onEditChange}/>
                   <input name='color'/>
                   <button type='submit' className='button button-small'>Save</button>
                   <button type='button' className='button button-small button-unstyled' onClick={this.onCancelClick}>cancel</button>
