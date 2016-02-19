@@ -11,5 +11,9 @@ export default Model.extend({
       type: "boolean",
       default: false
     }
+  },
+  toggleEdit(event){
+    event.preventDefault()
+    !this.isEditing
   }
 })
