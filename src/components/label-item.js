@@ -9,6 +9,9 @@ export default React.createClass({
   onCancelClick(){
     this.props.label.isEditing = false
   },
+  destroyLabel(){
+    this.props.label.destroy()
+  },
   render() {
     const {label} = this.props
     let content
@@ -26,7 +29,7 @@ export default React.createClass({
                   <span className='label-color' style={{backgroundColor: `#${label.color}`}}>&nbsp;</span>
                   <span>{label.name}</span>
                   <span className='octicon octicon-pencil' onClick={this.onEditClick}></span>
-                  <span className='octicon octicon-x'></span>
+                  <span className='octicon octicon-x' onClick={this.destroyLabel}></span>
                 </div>
                   )
       }

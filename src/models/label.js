@@ -1,6 +1,8 @@
 import Model from "ampersand-model"
+import githubMixin from '../helpers/githubMixin'
 
-export default Model.extend({
+export default Model.extend(githubMixin,{
+  idAttribute: "name",
   props: {
     url: "string",
     name:"string",
@@ -11,9 +13,5 @@ export default Model.extend({
       type: "boolean",
       default: false
     }
-  },
-  toggleEdit(event){
-    event.preventDefault()
-    !this.isEditing
   }
 })
